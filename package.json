@@ -1,0 +1,93 @@
+{
+  "name": "html5-qrcode-ru",
+  "version": "2.3.8.1",
+  "description": "Кроссплатформенный сканер QR-кодов и штрих-кодов HTML5",
+  "main": "./cjs/index.js",
+  "module": "./esm/index.js",
+  "typings": "./esm/index.d.ts",
+  "esnext": "./es2015/index.js",
+  "unpkg": "./html5-qrcode.min.js",
+  "scripts": {
+    "build-windows": "npm run build:es2015 && npm run build:esm && npm run build:esnext && npm run build:cjs && npm run build:umd_windows && npm run build:typing && npm run build:copy_windows",
+    "test": "npm run-script test:build && npm run-script test:run",
+    "test_windows": "npm run-script test:build && npm run-script test:run_windows",
+    "test:build": "tsc --build tsconfig.test.json",
+    "test:run_windows": ".\\scripts\\test-run.bat",
+    "test:run": "./scripts/test-run.sh",
+    "lint-md": "remark .",
+    "clean": "rm -Rf ./lib/* ./build/* ./meta/bundlesize/* ./meta/coverage/* ./.rpt2_cache  ./dist/* ./src/*.d.ts",
+    "prebuild": "npm run clean",
+    "postbuild": "cp -R ./third_party ./dist/third_party",
+    "build": "npm run build:es2015 && npm run build:esm && npm run build:esnext && npm run build:cjs && npm run build:umd && npm run build:typing && npm run build:copy",
+    "build:es2015": "tsc --build tsconfig.lib-es2015.json",
+    "build:esm": "tsc --build tsconfig.lib-esm.json",
+    "build:esnext": "tsc --build tsconfig.lib-esm.json",
+    "build:cjs": "tsc --build tsconfig.lib-cjs.json",
+    "build:typing": "tsc --emitDeclarationOnly --outDir ./dist",
+    "build:umd": "./scripts/build-webpack.sh",
+    "build:umd_windows": ".\\scripts\\build-webpack.bat",
+    "build:copy": "cp README.md dist && cp package.json dist && cp LICENSE dist && cp -R src dist/src",
+    "build:copy_windows": "copy README.md dist && copy package.json dist && copy LICENSE dist",
+    "internal_release": "npm run build && cp dist/html5-qrcode.min.js minified/html5-qrcode.min.js",
+    "release": "npm run build && cp dist/html5-qrcode.min.js minified/html5-qrcode.min.js && cd dist && npm publish",
+    "release_windows": "npm run build && cp dist\\html5-qrcode.min.js minified\\html5-qrcode.min.js && cd dist && npm publish",
+    "doc_gen": "npx typedoc --excludePrivate src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wolfcreative/html5-qrcode-ru.git"
+  },
+  "keywords": [
+    "html5",
+    "qrcode",
+    "html",
+    "camera",
+    "scanner",
+    "barcode",
+    "barcode 1d",
+    "barcode 2d"
+  ],
+  "author": "wolfcreative",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/wolfcreative/html5-qrcode-ru/issues"
+  },
+  "homepage": "https://github.com/wolfcreative/html5-qrcode#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.22.10",
+    "@babel/core": "^7.22.10",
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/preset-env": "^7.22.10",
+    "@types/chai": "^4.3.5",
+    "@types/mocha": "^10.0.1",
+    "babel-minify": "^0.5.2",
+    "chai": "^4.3.7",
+    "docusaurus-plugin-typedoc": "^0.19.2",
+    "expose-loader": "^4.1.0",
+    "jsdom": "22.1.0",
+    "jsdom-global": "3.0.2",
+    "mocha": "^10.2.0",
+    "mocha-lcov-reporter": "^1.3.0",
+    "promise-polyfill": "^8.3.0",
+    "remark-cli": "^11.0.0",
+    "remark-preset-lint-recommended": "^6.1.3",
+    "rewire": "^6.0.0",
+    "ts-loader": "^9.4.4",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.2.0",
+    "typedoc": "^0.24.8",
+    "typedoc-plugin-markdown": "^3.15.4",
+    "typescript": "^5.1.6",
+    "typings": "^2.1.1",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
+  },
+  "remarkConfig": {
+    "plugins": [
+      "remark-preset-lint-recommended"
+    ]
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
