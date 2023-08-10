@@ -1,6 +1,6 @@
 {
   "name": "html5-qrcode-ru",
-  "version": "2.3.8-3",
+  "version": "2.3.8-6",
   "description": "Кроссплатформенный сканер QR-кодов и штрих-кодов HTML5",
   "main": "./cjs/index.js",
   "module": "./esm/index.js",

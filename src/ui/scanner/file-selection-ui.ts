@@ -9,10 +9,7 @@
  */
 
 import {Html5QrcodeScannerStrings} from "../../strings";
-import {
-    BaseUiElementFactory,
-    PublicUiElementIdAndClasses
-} from "./base";
+import {BaseUiElementFactory, PublicUiElementIdAndClasses} from "./base";
 
 /**
  * Interface for callback when a file is selected by user using the button.
@@ -221,20 +218,13 @@ export class FileSelectionUi {
             let start8Chars = imageFileName.substring(0, 8);
             let length = imageFileName.length;
             let last8Chars = imageFileName.substring(length - 8, length);
-            imageFileName = `${start8Chars}....${last8Chars}`;
         }
 
-        let newText = Html5QrcodeScannerStrings.fileSelectionChooseAnother()
-            + " - "
-            + imageFileName;
-        this.fileSelectionButton.innerText = newText;
+        this.fileSelectionButton.innerText = Html5QrcodeScannerStrings.fileSelectionChooseAnother();
     }
 
     private setInitialValueToButton() {
-        let initialText = Html5QrcodeScannerStrings.fileSelectionChooseImage()
-            + " - "
-            + Html5QrcodeScannerStrings.fileSelectionNoImageSelected();
-        this.fileSelectionButton.innerText = initialText;
+        this.fileSelectionButton.innerText = Html5QrcodeScannerStrings.fileSelectionChooseImage();
     }
 
     private getFileScanInputId(): string {
@@ -256,8 +246,7 @@ export class FileSelectionUi {
         parentElement: HTMLDivElement,
         showOnRender: boolean,
         onFileSelected: OnFileSelected): FileSelectionUi {
-        let button = new FileSelectionUi(
+        return new FileSelectionUi(
             parentElement, showOnRender, onFileSelected);
-        return button;
     }
 } 

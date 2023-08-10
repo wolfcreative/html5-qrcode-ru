@@ -140,29 +140,16 @@ class FileSelectionUi {
     }
     setImageNameToButton(imageFileName) {
         const MAX_CHARS = 20;
-        if (imageFileName.length > MAX_CHARS) {
-            let start8Chars = imageFileName.substring(0, 8);
-            let length = imageFileName.length;
-            let last8Chars = imageFileName.substring(length - 8, length);
-            imageFileName = `${start8Chars}....${last8Chars}`;
-        }
-        let newText = strings_1.Html5QrcodeScannerStrings.fileSelectionChooseAnother()
-            + " - "
-            + imageFileName;
-        this.fileSelectionButton.innerText = newText;
+        this.fileSelectionButton.innerText = strings_1.Html5QrcodeScannerStrings.fileSelectionChooseAnother();
     }
     setInitialValueToButton() {
-        let initialText = strings_1.Html5QrcodeScannerStrings.fileSelectionChooseImage()
-            + " - "
-            + strings_1.Html5QrcodeScannerStrings.fileSelectionNoImageSelected();
-        this.fileSelectionButton.innerText = initialText;
+        this.fileSelectionButton.innerText = strings_1.Html5QrcodeScannerStrings.fileSelectionChooseImage();
     }
     getFileScanInputId() {
         return "html5-qrcode-private-filescan-input";
     }
     static create(parentElement, showOnRender, onFileSelected) {
-        let button = new FileSelectionUi(parentElement, showOnRender, onFileSelected);
-        return button;
+        return new FileSelectionUi(parentElement, showOnRender, onFileSelected);
     }
 }
 exports.FileSelectionUi = FileSelectionUi;
